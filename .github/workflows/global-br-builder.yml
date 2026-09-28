@@ -1,0 +1,42 @@
+name: GLOBAL-BR Automated Build Core
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch: 
+
+jobs:
+  setup-and-architecture:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Clonar Repositorio
+      uses: actions/checkout@v4
+
+    - name: Configurar Node.js e Ambiente Expo
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+
+    - name: Validar Diretrizes do Proprietario ARANDES
+      run: |
+        echo "=== INICIANDO COMANDO MESTRE GLOBAL-BR ==?"
+        echo "Identidade do Aplicativo: GLOBAL-BR"
+        echo "Proprietario Principal: ARANDES (Role: OWNER)"
+        echo "Tema Visual Definido: Preto (#000000)"
+        echo "Tecnologia Base: React Native + Expo + TypeScript + Node.js"
+
+    - name: Criar Estrutura de Pastas de Referencia
+      run: |
+        mkdir -p src/components src/screens src/navigation src/theme src/store backend/src assets/logo
+        echo "Aguardando imagem: login-reference.jpg" > assets/logo/README.md
+
+    - name: Gravar Manual de Desenvolvimento da IA
+      run: |
+        cat << 'EOF' > REGRAS_DESENVOLVIMENTO.txt
+        ARANDESLX - COMANDO MESTRE DE DESENVOLVIMENTO DO GLOBAL-BR
+        Objetivo: Desenvolver o GLOBAL-BR como comunidade social unica para Android.
+        Tema principal: PRETO (#000000, superficies #111111, texto #FFFFFF).
+        Hierarquia de permissoes: OWNER > ADMIN > MODERATOR > MEMBER > GUEST.
+        Fluxo por etapas: Nao construir tudo de uma vez. Implementar, testar, corrigir.
+        EOF
+        
